@@ -1,17 +1,129 @@
-<div class="row">
-<div *ngIf="identity" class="navigation col-lg-2">
+<div *ngIf="identity" class="navigation">
   <h1>
     {{title}}
   </h1>
-  
-</div>
-<div class="clearfix"></div>
-<div *ngIf="identity" class="navigation col-lg-10">
-  <p>Estas logueado</p>
-</div>
-</div>
 
-<div class="row">
-  <div *ngIf="!identity" class="col-lg-6">kaks</div>
-  <div *ngIf="!identity" class="col-lg-6">dasda</div>
+  <div class="row">
+    <div class="col-lg-6">
+      <nav id="navigation" class="row justify-content-right">
+        <span class="col-lg-2">
+          <a href="#">
+            <span class="glyphicon glyphicon-search" aria-hidden="true">Buscar</span>
+          </a>
+        </span>
+        <span class="col-lg-2">
+          <a href="#">
+            <span class="glyphicon glyphicon-star" aria-hidden="true">Artistas</span>
+          </a>
+        </span>
+        <span class="col-lg-2">
+          <a href="#">
+            <span class="glyphicon glyphicon-book" aria-hidden="true">Albums</span>
+          </a>
+        </span>
+      </nav>
+    </div>
+    <div class="col-lg-6">
+      <nav id="user_logged" class="row">
+        <span class="col-lg-2" id="identity_name">
+          {{identity.user.surname}}
+        </span>
+
+        <span class="col-lg-2">
+          <a href="#">
+            <span class="glyphicon glyphicon-cog " aria-hidden="true"></span>
+            Mis datos
+          </a>
+        </span>
+        <span class="btn btn-warning col-lg-2" (click)="logout()">
+          Cerrar Sesión
+        </span>
+      </nav>
+    </div>
+  </div>
 </div>
+  <div class="clearfix"></div>
+  <div *ngIf="identity" class="navigation col-lg-10">
+    <p>Estas logueado</p>
+    <router-outlet></router-outlet>
+  </div>
+
+
+  <div class="row">
+    <div *ngIf="!identity" class="col-lg-6">
+      <h1>Identificate</h1>
+      <div *ngIf="errorMessage">
+        <div class="alert alert-info">
+          <strong>{{errorMessage}}</strong>
+        </div>
+      </div>
+      <form #loginForm="ngForm" (ngSubmit)="onSubmit()" class="col-md-10">
+        <p>
+          <label>Email:</label>
+          <input type="email" #email="ngModel" name="email" [(ngModel)]="user.email" class="form-control" required />
+          <span *ngIf="!email.valid && email.touched">
+            El email es obligatorio
+          </span>
+        </p>
+        <p>
+          <label>Contraseña:</label>
+          <input type="password" #password="ngModel" name="password" [(ngModel)]="user.password" class="form-control"
+            required />
+        </p>
+        <input type="submit" value="Entrar" class="btn btn-primary" />
+      </form>
+    </div>
+
+    <div *ngIf="!identity" class="col-lg-6">
+      <h1>Registrate</h1>
+      <div *ngIf="errorMessageRegister">
+        <div class="alert alert-info">
+          <strong>{{errorMessageRegister}}</strong>
+        </div>
+      </div>
+      <div *ngIf="alertRegister">
+        <div class="alert alert-info">
+          <strong>{{alertRegister}}</strong>
+        </div>
+      </div>
+      <form #registerForm="ngForm" (ngSubmit)="onSubmitRegister()" class="col-md-10">
+        <p>
+          <label>Nombre:</label>
+          <input #name="ngModel" name="name" [(ngModel)]="user_register.name" type="text" class="form-control"
+            required />
+          <span *ngIf="!name.valid && name.touched">
+            El nombre es obligatorio
+          </span>
+        </p>
+
+        <p>
+          <label>Apellido:</label>
+          <input type="text" #surname="ngModel" name="surname" [(ngModel)]="user_register.surname" class="form-control"
+            required />
+          <span *ngIf="!surname.valid && surname.touched">
+            El email es obligatorio
+          </span>
+        </p>
+
+        <p>
+          <label>Email:</label>
+          <input type="email" #email="ngModel" name="email" [(ngModel)]="user_register.email" class="form-control"
+            required />
+          <span *ngIf="!email.valid && email.touched">
+            El email es obligatorio
+          </span>
+        </p>
+
+        <p>
+          <label>Contraseña:</label>
+          <input #password="ngModel" name="password" [(ngModel)]="user_register.password" type="password"
+            class="form-control" required />
+          <span *ngIf="!password.valid && password.touched">
+            La Contraseña es obligatoria
+          </span>
+        </p>
+        <input type="submit" value="Registrarse" class="btn btn-primary" />
+      </form>
+    </div>
+
+  </div>

@@ -2,8 +2,9 @@
 
 var express = require('express');
 var bodyParser = require('body-parser');
-
+const cors = require('cors');
 var app = express();
+
 
 //cargar rutas
 var user_routes = require('./routes/user');
@@ -32,6 +33,12 @@ app.use('/api', user_routes);
 app.use('/api', artist_routes);
 app.use('/api', album_routes);
 app.use('/api', song_routes);
+
+//use cors
+app.use(cors({
+    methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH']
+}));
+
 
 /*app.get('/pruebas', function(req, res){
     res.status(200).send({message: 'Binevenido'});

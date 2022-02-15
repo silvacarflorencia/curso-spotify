@@ -85,6 +85,11 @@ function loginUser(req, res){
 function updateUser(req, res){
     var userId = req.params.id;
     var update = req.body;
+    //jwt sub = id -- middleware authenticated opbjeto payload
+    if(userId != req.user.sub){
+        return res.status(500).send({message: 'No tienes permiso para actualizar este usuario'})
+        //con return no llega al flujo del codigo de abajo
+    }
     
     User.findByIdAndUpdate(userId, update, (err, userUpdated) => {
         if(err){
