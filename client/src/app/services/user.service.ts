@@ -41,8 +41,10 @@ export class UserService{
         
         let headers = new HttpHeaders({'Content-Type': 'application/json',
                                         'Authorization': this.getToken()});
-  
-        return this._http.put(this.url+'update-user/'+user_to_update.user._id, params, {headers: headers});
+        
+                                        console.log(user_to_update)
+
+        return this._http.put(this.url+'update-user/'+user_to_update._id, params, {headers: headers});
     }
     getIdentity(){
         //convierto un json a un objecto js

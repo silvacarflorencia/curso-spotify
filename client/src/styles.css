@@ -1,1 +1,20 @@
-/* You can add global styles to this file, and also import other style files */
+html, body{
+    margin: 0px;
+    height: 100%;
+    background: #eee;
+}
+
+#user_logged{
+    background: #eee;
+    border-radius: 100px;
+    height: 57px;
+    width: 57px;
+    margin: 0px auto;
+    margin-top: 15px;
+    overflow: hidden;
+}
+
+.btn_logout{
+    cursor: pointer;
+}
+

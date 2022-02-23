@@ -17,6 +17,7 @@ export class AppComponent implements OnInit {
   public errorMessage: any;
   public errorMessageRegister: any;
   public alertRegister: string;
+  public url: string
 
   //inyecto la clase servicios para usar sus metodos
   constructor(private _userService:UserService){
@@ -26,6 +27,7 @@ export class AppComponent implements OnInit {
     this.identity_register = ''
     this.token = ''
     this.alertRegister = ''
+    this.url = this._userService.url
   }
 
   //se ejecuta al cargar el componente
