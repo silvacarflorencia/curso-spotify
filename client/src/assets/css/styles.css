@@ -1,4 +1,5 @@
 
+
 .head-title{
     font-size: 30px;
     font-weight: bold;
@@ -37,8 +38,9 @@
  #user_logged{
      text-decoration: center;
      background: #1C1C1F;
-     position: absolute;
-     bottom: 0;
+     
+     margin-bottom: 0;
+     
      border-top:1px solid #444;
      width: 75%;
  }
@@ -57,9 +59,16 @@
 #user_logged .user_image img{
     width: 57px;
 }
+
 .btn_logout{
     cursor: pointer;
 }
+
+.actived{
+    border-bottom: 4px solid #84BD00;
+    padding-bottom: 4px;
+}
+
 
 
  

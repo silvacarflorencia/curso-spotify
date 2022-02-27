@@ -12,7 +12,7 @@ var md_upload = multipart({uploadDir: './uploads/artists'});
 
 api.get('/artist/:id', ArtistController.getArtist);
 api.get('/artists/:page?', ArtistController.getAll); //pages? si quiero el parametro opcional
-api.post('/artist-save', ArtistController.saveArtist);
+api.post('/artist-save',  md_auth.ensureAuth, ArtistController.saveArtist);
 api.put('/artist-update/:id', md_auth.ensureAuth, ArtistController.updateArtist);
 api.delete('/artist-delete/:id', md_auth.ensureAuth, ArtistController.deleteArtist);
 api.post('/upload-image-artist/:id', [md_auth.ensureAuth, md_upload], ArtistController.uploadImage)

@@ -3,18 +3,3 @@ html, body{
     height: 100%;
     background: #eee;
 }
-
-#user_logged{
-    background: #eee;
-    border-radius: 100px;
-    height: 57px;
-    width: 57px;
-    margin: 0px auto;
-    margin-top: 15px;
-    overflow: hidden;
-}
-
-.btn_logout{
-    cursor: pointer;
-}
-

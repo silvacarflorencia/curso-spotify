@@ -33,7 +33,6 @@ export class UserService{
         let headers = new HttpHeaders({'Content-Type': 'application/json'});
         
         return this._http.post(this.url+'register', params, {headers: headers});
-
     }
 
     updateUser(user_to_update:any){

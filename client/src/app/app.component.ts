@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router, ActivatedRoute, Params} from "@angular/router"
 import { User } from './models/user';
 import {UserService} from './services/user.service'
  
@@ -20,14 +21,19 @@ export class AppComponent implements OnInit {
   public url: string
 
   //inyecto la clase servicios para usar sus metodos
-  constructor(private _userService:UserService){
+  constructor(
+    private _userService:UserService, 
+    private _route:ActivatedRoute,
+    private _router: Router){
     this.user = new User('','','','','','ROLE_USER','','');
-    this.user_register = new User('','','','','','ROLE_USER','','');
+    this.user_register = new User('','','','','','ROLE_ADMIN','','');
     this.identity = ''
     this.identity_register = ''
     this.token = ''
     this.alertRegister = ''
     this.url = this._userService.url
+
+    console.log(this.user)
   }
 
   //se ejecuta al cargar el componente
@@ -36,7 +42,7 @@ export class AppComponent implements OnInit {
     this.identity = this._userService.getIdentity()
     this.token = this._userService.getToken()
 
-    console.log(this.identity)    
+    console.log(this.identity.user.user)    
   }
 
   public onSubmit(){
@@ -80,6 +86,7 @@ export class AppComponent implements OnInit {
 
       this.identity = null;
       this.token = null;
+      this._router.navigate(['/'])
     }
 
     onSubmitRegister(){
@@ -87,15 +94,12 @@ export class AppComponent implements OnInit {
       (res) => {
         const user = JSON.stringify(res);
         this.identity_register = JSON.parse(user);
-
-        console.log(this.identity_register.user._id)
-        console.log(this.identity_register)
-
+        
         if(!this.identity_register.user._id){
           this.alertRegister = 'Error al registrarse';
         }else{
           this.alertRegister = 'El registro se ha realizado correctamente, identificate con ' + this.user_register.email
-          this.user_register = new User('','','','','','ROLE_USER','','');
+          this.user_register = new User('','','','','','ROLE_ADMIN','','');
         }
       },
       (err) => {this.errorMessageRegister = err.error.message}

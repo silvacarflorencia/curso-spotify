@@ -5,7 +5,7 @@ export class User{
         public surname: string,
         public email: string,
         public password: string,
-        public role: string,
+        public rol: string,
         public image: string,
         public getHash:  string
     ){}
