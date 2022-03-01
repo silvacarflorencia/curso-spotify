@@ -32,8 +32,6 @@ export class AppComponent implements OnInit {
     this.token = ''
     this.alertRegister = ''
     this.url = this._userService.url
-
-    console.log(this.user)
   }
 
   //se ejecuta al cargar el componente
@@ -50,8 +48,9 @@ export class AppComponent implements OnInit {
     this._userService.singUp(this.user, null).subscribe(
       (res) => {
         const user = JSON.stringify(res);
-        this.identity = JSON.parse(user);
+        this.identity = JSON.parse(user).user;
 
+        console.log(this.identity)
         if(this.user._id){
           alert("El usuario no esta correctamente identificado")
         }else{

@@ -1,22 +1,46 @@
-<h1>{{titulo}}</h1>
+<div *ngIf="identity && identity.rol == 'ROLE_ADMIN'" class="col-lg-6">
+    <h1>{{titulo}}</h1>
+    <div *ngIf="errorMessage">
+        <div class="alert alert-info">
+            {{errorMessage}}
+        </div>
+    </div>
+    <form #formArtist="ngForm" (ngSubmit)="onSubmit()">
+        <p>
+            <label>Nombre</label>
+            <input class="form-control" type="text" #name="ngModel" name="name" [(ngModel)]="artist.name" required />
 
-<form class="col-lg-6" #formArtist="ngForm" (ngSubmit)="onSubmit()">
-<p>
-    <label>Nombre</label>
-    <input class="form-control" type="text" #name="ngModel" name="name" [(ngModel)]="artist.name" required />
-   
-    <span *ngIf="!name.valid && name.touched">
-        El nombre el obligatorio
-    </span>
-</p>
+            <span *ngIf="!name.valid && name.touched">
+                El nombre el obligatorio
+            </span>
+        </p>
 
-<p>
-    <label>Descripción</label>
-    <textarea class="form-control" #description="ngModel" name="description" [(ngModel)]="artist.description"></textarea>
-    <span *ngIf="!description.valid && description.touched">
-        La descripcion es obligatoria
-    </span>
-</p>
-<input class="btn btn-success" type="submit" value="{{titulo}}" ng-disable="!formArtist.form.value"/>
+        <p>
+            <label>Descripción</label>
+            <textarea class="form-control" #description="ngModel" name="description"
+                [(ngModel)]="artist.description" ></textarea>
+            <span *ngIf="!description.valid && description.touched">
+                La descripcion es obligatoria
+            </span>
+        </p>
 
-</form>
+        <div *ngIf="is_edit">
+            <div class="image_for_edit" *ngIf="artist.image != 'null'">
+                <img src="{{url + 'get-image-artist/' + artist.image}}"/>
+            </div>
+            
+            <P>
+                <label>Sube la imagen del album</label>
+                <input type="file" placeholder="Subir imagen" (change)="fileChangeEvent($event)"/>
+        
+            </P>
+        </div>
+
+        <input class="btn btn-success" type="submit" value="{{titulo}}" ng-disable="!formArtist.form.value" />
+
+    </form>
+</div>
+
+<div *ngIf="!identity || identity.rol != 'ROLE_ADMIN'" class="col-lg-6">
+    <h1>No tiene acceso a esta parte de la aplicacion</h1>
+</div>
