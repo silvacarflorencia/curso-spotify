@@ -37,10 +37,10 @@ export class ArtistListComponent implements OnInit{
             this.confirmado = null
         }
     ngOnInit(): void {
-        this.getArtis()
+        this.getArtists()
     }
 
-    getArtis(){
+    getArtists(){
         this._route.params.forEach((params: Params) =>{
             let page = +params['page'];
             if(!page){
@@ -84,7 +84,7 @@ export class ArtistListComponent implements OnInit{
                 if(!res){
                     alert("Error en el servidor")
                 }else{
-                    this.getArtis()
+                    this.getArtists()
                 }
             },
             (err) => {
