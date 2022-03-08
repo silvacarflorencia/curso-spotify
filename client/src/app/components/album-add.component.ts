@@ -7,8 +7,6 @@ import {ArtistService} from '../services/artist.service'
 import {AlbumService} from '../services/album.service'
 import {GLOBAL} from '../services/global'
 
-
-
 @Component({
     selector:'album-add',
     templateUrl: '../views/album-add.html',

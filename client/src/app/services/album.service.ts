@@ -42,6 +42,7 @@ export class AlbumService{
     return this._http.put(this.url+'album-update/'+id, params, {headers:headers})
     }
 
+    
     getAlbums(token: string, artistId=''){
         let headers = new HttpHeaders({
             'Content-Type': 'application/json',
@@ -63,4 +64,5 @@ export class AlbumService{
 
     return this._http.delete(this.url+'album-delete/'+id, {headers:headers})
     }
+
 }    

@@ -60,6 +60,7 @@ function loginUser(req, res){
         }else{
             if(!user){
                 res.status(404).send({message:"El usuario no existe"})
+
             }else{
                 //Comprobar password                
                 bcrypt.compare(password, user.password, function(err, check){
@@ -68,10 +69,18 @@ function loginUser(req, res){
                         //devolver datos de user logueado
                         if(params.getHash){
                             //devolver un token de jwt
-                            res.status(200).send({token: jwt.createToken(user) })
+                          //  res.status(200).send({token: jwt.createToken(user) })
+                          res.json({
+                            status:"200",
+                            token: jwt.createToken(user)
+                          });
 
                         }else{
-                            res.status(200).send({user})
+                           // res.status(200).send({user})
+                           res.json({
+                            status:"200",
+                            user: user
+                          });
                         }
                     }else{
                         res.status(404).send({message: "El usuario no se ha podido loguer"})

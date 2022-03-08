@@ -67,7 +67,6 @@ function saveSong(req, res){
     var song = new Song();
     var params = req.body;
 
-    console.log(params)
     song.number = params.number,
     song.name = params.name,
     song.duration = params.duration,

@@ -19,7 +19,11 @@ function getArtist(req, res){
             res.status(500).send({message: 'Error en la peticion'})
         }else{
             if(artist){
-                res.status(200).send({artist: artist})
+               // res.status(200).send({artist: artist})
+               res.json({
+                status:"200",
+                artist: artist
+              });
             }else{
                 res.status(404).send({message: 'El artista no existe'})
             }

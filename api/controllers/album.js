@@ -100,21 +100,24 @@ function deleteAlbum(req, res){
         if(err){
             res.status(500).send({message: "Error en la peticion"})
         }else{
+
             if(!albumRemoved){
                 res.status(404).send({message: "No se borro Album"}) 
             }else{
-                Song.find({song: albumRemoved._id}).deleteOne((err, songRemoved) =>{
+                Song.find({album: albumRemoved._id}).deleteOne((err, songRemoved) =>{
                     if(err){
                         res.status(500).send({message: "Error al eliminar el song"})
                     }else{
                         if(!songRemoved){
                             res.status(404).send({message: "El song no ha sido eliminado"}) 
                         }else{
-                            res.status(200).send({artis: artistRemoved});
+                          // res.status(200).send({song: albumRemoved});
+                         
                         }
                     }
                 })
                 res.status(200).send({album: albumRemoved}) 
+            
             }
         }
     })
