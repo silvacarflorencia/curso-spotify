@@ -38,6 +38,13 @@ export class PlayerComponent implements OnInit{
         this.song = new Song(1,'','','', '','')
     }
     ngOnInit(): void {
-        console.log('player')
+        var song = null
+       // JSON.parse(localStorage.getItem('soundSong'))
+
+        if(song){
+            this.song = song
+        }else{
+            this.song = new Song(1, "","","","","")
+        }
     }
 }

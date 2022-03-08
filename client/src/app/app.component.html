@@ -1,5 +1,5 @@
 <div class="general">
-<div class="row">
+<div class="row principal">
   <div *ngIf="identity" class="navigation col-lg-1">
     <h1 class="head-title">
       <a [routerLink]="['/']">
@@ -53,8 +53,8 @@
 </div>
 
 
-<div *ngIf="!identity" class="row">
-  <div class="col-lg-6">
+<div *ngIf="!identity" class="row login">
+  <div class="col-lg-4">
     <h1>Identificate</h1>
     <div *ngIf="errorMessage">
       <div class="alert alert-info">
